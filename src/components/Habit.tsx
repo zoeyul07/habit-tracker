@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 
+export interface IHabit {
+  id: number;
+  name: string;
+  count: number;
+}
+
 interface Props {
-  habit: { name: string; count: number };
+  habit: IHabit;
+  onIncrement: (habit: IHabit) => void;
+  onDecrement: (habit: IHabit) => void;
+  onDelete: (habit: IHabit) => void;
 }
 
 class Habit extends Component<Props> {
@@ -10,15 +19,18 @@ class Habit extends Component<Props> {
   };
 
   handleIncrement = () => {
-    //this.state.count++ 와 같이 그냥 state를 업데이트하게 되면 리액트는 state가 없데이트 되었는지 모른다.
-    this.setState({ count: this.state.count + 1 });
+    const { habit, onIncrement } = this.props;
+    onIncrement(habit);
   };
 
   handleDecrement = () => {
-    const { count } = this.state;
+    const { habit, onDecrement } = this.props;
+    onDecrement(habit);
+  };
 
-    if (count === 0) return;
-    this.setState({ count: count - 1 });
+  handleDelete = () => {
+    const { habit, onDelete } = this.props;
+    onDelete(habit);
   };
   render() {
     const { name, count } = this.props.habit;
@@ -39,7 +51,10 @@ class Habit extends Component<Props> {
         >
           <i className="fas fa-minus-square"></i>
         </button>
-        <button className="habit-button habit-delete">
+        <button
+          className="habit-button habit-delete"
+          onClick={this.handleDelete}
+        >
           <i className="fas fa-trash"></i>
         </button>
       </li>
