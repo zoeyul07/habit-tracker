@@ -11,13 +11,10 @@ interface Props {
   onIncrement: (habit: IHabit) => void;
   onDecrement: (habit: IHabit) => void;
   onDelete: (habit: IHabit) => void;
+  onAdd: (name: string) => void;
 }
 
 class Habit extends Component<Props> {
-  state = {
-    count: 0,
-  };
-
   handleIncrement = () => {
     const { habit, onIncrement } = this.props;
     onIncrement(habit);
@@ -32,6 +29,11 @@ class Habit extends Component<Props> {
     const { habit, onDelete } = this.props;
     onDelete(habit);
   };
+
+  handleAdd = () => {
+    const { onAdd } = this.props;
+  };
+
   render() {
     const { name, count } = this.props.habit;
 
