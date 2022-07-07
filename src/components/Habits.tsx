@@ -7,6 +7,7 @@ interface Props {
   onDecrement: (habit: IHabit) => void;
   onDelete: (habit: IHabit) => void;
   onAdd: (name: string) => void;
+  onReset: () => void;
   habits: IHabit[];
 }
 
@@ -26,6 +27,7 @@ class Habits extends Component<Props> {
   handleAdd = (name: string) => {
     this.props.onAdd(name);
   };
+
   render() {
     const { habits } = this.props;
 
@@ -44,6 +46,9 @@ class Habits extends Component<Props> {
             />
           ))}
         </ul>
+        <button className="habits-reset" onClick={this.props.onReset}>
+          Reset All
+        </button>
       </>
     );
   }
