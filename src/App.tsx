@@ -1,7 +1,7 @@
 import "./App.css";
 import Habits from "./components/Habits";
 
-import React, { Component } from "react";
+import { Component } from "react";
 import { IHabit } from "./components/Habit";
 import Navbar from "./components/Navbar";
 
@@ -25,19 +25,26 @@ class App extends Component {
     // });
 
     //array는 index를 이용하면 빠르게 검색할 수 있으므로 index를 구해서 사용한다.
-    const habits = [...this.state.habits];
-    const habitIndex = this.state.habits.indexOf(habit);
-    habits[habitIndex].count++;
+    const habits = this.state.habits.map((item) => {
+      if (item.id === habit.id) {
+        return { ...habit, count: habit.count + 1 };
+      }
+
+      return item;
+    });
 
     this.setState({ habits: habits });
   };
 
   handleDecrement = (habit: IHabit) => {
     if (habit.count === 0) return;
+    const habits = this.state.habits.map((item) => {
+      if (item.id === habit.id) {
+        return { ...habit, count: habit.count - 1 };
+      }
 
-    const habits = [...this.state.habits];
-    const habitIndex = this.state.habits.indexOf(habit);
-    habits[habitIndex].count--;
+      return item;
+    });
 
     this.setState({ habits: habits });
   };
@@ -59,7 +66,7 @@ class App extends Component {
 
   handleReset = () => {
     const habits = this.state.habits.map((habit) => {
-      habit.count = 0;
+      if (habit.count === 0) return { ...habit, count: 0 };
       return habit;
     });
     this.setState({ habits });

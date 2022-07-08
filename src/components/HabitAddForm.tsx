@@ -1,9 +1,9 @@
-import React, { Component, RefObject } from "react";
+import React, { PureComponent, RefObject } from "react";
 
 interface Props {
   onAdd: (name: string) => void;
 }
-class HabitAddForm extends Component<Props> {
+class HabitAddForm extends PureComponent<Props> {
   formRef: RefObject<HTMLFormElement> = React.createRef();
   inputRef: RefObject<HTMLInputElement> = React.createRef();
 

@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import { PureComponent } from "react";
 
 interface Props {
   totalCount: number;
 }
-class Navbar extends Component<Props> {
+class Navbar extends PureComponent<Props> {
   render() {
     return (
       <div className="navbar">

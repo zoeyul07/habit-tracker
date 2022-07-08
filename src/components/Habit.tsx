@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
 export interface IHabit {
   id: number;
@@ -14,7 +14,7 @@ interface Props {
   onAdd: (name: string) => void;
 }
 
-class Habit extends Component<Props> {
+class Habit extends PureComponent<Props> {
   handleIncrement = () => {
     const { habit, onIncrement } = this.props;
     onIncrement(habit);
