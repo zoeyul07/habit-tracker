@@ -8,7 +8,7 @@ const SimpleHabit = (props: Props) => {
   //useState의 경우 react가 알아서 기억하고 있으므로(동일한 값을 메모리에 저장) 리렌더링 되어도 동일한 값을 받아온다.
   const [count, setCount] = useState(0);
   //React.createRef의 경우 리렌더링 될때마다 새로운 레퍼런스를 만들어 새로운 것을 할당하게 된다.
-  //useRef의 경우 호출할 때마다 새로운 레퍼런스를 만드는 것이 아니라 한번만 만들고 메모리에 저장해 제사용한다.
+  //useRef의 경우 호출할 때마다 새로운 레퍼런스를 만드는 것이 아니라 한번만 만들고 메모리에 저장해 재사용한다.
   const spanRef: MutableRefObject<HTMLSpanElement | null | undefined> =
     useRef();
 
